@@ -3,6 +3,10 @@
 namespace VDM.Pastelaria.Shareable.Models.Responses;
 public record ErroResponse
 {
+    public ErroResponse()
+    {
+    }
+
     public ErroResponse(AppException appException)
     {
         CodigoErro = appException.CodigoErro;
@@ -11,5 +15,5 @@ public record ErroResponse
 
     public int? CodigoErro { get; init; }
 
-    public string Mensagem { get; init; }
+    public string Mensagem { get; init; } = default!;
 }

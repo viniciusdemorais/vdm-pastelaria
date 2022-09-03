@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
+using System.Diagnostics.CodeAnalysis;
 
 namespace VDM.Pastelaria.TestUtils;
 public abstract class MockLogger<T> : ILogger<T>
@@ -11,6 +12,7 @@ public abstract class MockLogger<T> : ILogger<T>
 
     public abstract void Log(LogLevel logLevel, object state, Exception exception = null);
 
+    [ExcludeFromCodeCoverage]
     public virtual bool IsEnabled(LogLevel logLevel) => true;
 
     public abstract IDisposable BeginScope<TState>(TState state);

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://specflow.org/specflow-config.json",
+  "bindingCulture": {
+    "name": "pt-BR"
+  },
+  "language": {
+    "feature": "pt-BR"
+  },
+  "trace": {
+    "traceTimings": true
+  }
+}

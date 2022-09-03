@@ -18,13 +18,14 @@ internal class TestApplication : WebApplicationFactory<Program>
 
     protected override IHost CreateHost(IHostBuilder builder)
     {
+        var mediator = Substitute.For<IMediator>();
         var subAuthenticationSchemeProvider = Substitute.For<IAuthenticationSchemeProvider>();
         subAuthenticationSchemeProvider.GetSchemeAsync(Arg.Any<string>()).Returns(new AuthenticationScheme("Bearer", "Bearer", typeof(MockAuthenticationHandler)));
         builder.ConfigureAppConfiguration((x, _) => x.Configuration["urls"] = "*");
         builder.ConfigureServices(services =>
         {
             services.AddSingleton(_ => Substitute.For<ILogger<string>>());
-            services.AddTransient(_ => Substitute.For<IMediator>());
+            services.AddTransient(_ => mediator);
             services.AddTransient(_ => subAuthenticationSchemeProvider);
         });
         builder.UseEnvironment(_environment);

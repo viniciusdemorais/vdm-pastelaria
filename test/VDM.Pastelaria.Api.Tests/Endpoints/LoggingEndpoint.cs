@@ -7,13 +7,13 @@ using System.Net;
 using VDM.Pastelaria.TestUtils;
 
 namespace VDM.Pastelaria.Api.Tests.Endpoints;
-public class LoggingEndpoints
+public class LoggingEndpoint
 {
     private static readonly ILogger<string> _logger;
     private static readonly LoggingLevelSwitch _loggingLevelSwitch;
     private static readonly HttpClient _client;
 
-    static LoggingEndpoints()
+    static LoggingEndpoint()
     {
         TestApplication app = new();
         _client = app.CreateClient();
@@ -28,7 +28,7 @@ public class LoggingEndpoints
         var entrada = "Testes teste";
 
         //Act
-        var result = await _client.GetAsync($"api/v1/loglevel/test?data={entrada}");
+        var result = await _client.GetAsync($"api/v1/loglevel/teste?data={entrada}");
 
         //Assert
         result.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -54,7 +54,7 @@ public class LoggingEndpoints
     {
 
         //Act
-        var result = await _client.PutAsync($"api/v1/loglevel/change?logLevel={logLevel}", content: default!);
+        var result = await _client.PutAsync($"api/v1/loglevel/alterar?logLevel={logLevel}", content: default!);
 
         //Assert
         result.StatusCode.Should().Be(HttpStatusCode.OK);

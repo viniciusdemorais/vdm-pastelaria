@@ -8,7 +8,7 @@ public static class LoggingEndpoint
 {
     public static void MapLoggingEndpoints(this WebApplication app)
     {
-        app.MapGet("api/v1/loglevel/test", (ILogger<string> logger, string data) =>
+        app.MapGet("api/v1/loglevel/teste", (ILogger<string> logger, string data) =>
         {
             logger.LogTrace("Message logged: {data}", data);
             logger.LogDebug("Message logged: {data}", data);
@@ -20,7 +20,7 @@ public static class LoggingEndpoint
         })
        .WithTags("LogLevel");
 
-        app.MapPut("api/v1/loglevel/change", (
+        app.MapPut("api/v1/loglevel/alterar", (
             [FromServices] LoggingLevelSwitch loggingLevelSwitch,
             [FromQuery, SwaggerParameter("Verbose = 0, Debug = 1, Information = 2, Warning = 3, Error = 4, Fatal = 5", Required = true)] LogEventLevel logLevel) =>
         {
