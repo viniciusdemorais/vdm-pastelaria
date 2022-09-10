@@ -18,6 +18,7 @@ public static class LoggingEndpoint
             logger.LogCritical("Message logged: {data}", data);
             return Results.Ok(data);
         })
+       .WithName("TesteLogLevel")
        .WithTags("LogLevel");
 
         app.MapPut("api/v1/loglevel/alterar", (
@@ -27,6 +28,7 @@ public static class LoggingEndpoint
             loggingLevelSwitch.MinimumLevel = logLevel;
             return Results.Ok($"Changed to {logLevel}");
         })
+       .WithName("AlterarLogLevel")
        .WithTags("LogLevel");
     }
 }

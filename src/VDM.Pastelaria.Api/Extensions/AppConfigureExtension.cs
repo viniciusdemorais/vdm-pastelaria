@@ -4,6 +4,7 @@ using Serilog;
 using Serilog.Events;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Diagnostics.CodeAnalysis;
+using VDM.Pastelaria.Data;
 
 namespace VDM.Pastelaria.Api.Extensions;
 
@@ -12,6 +13,9 @@ public static class AppConfigureExtension
 {
     public static void Configure(this WebApplication app)
     {
+        using var scope = app.Services.CreateScope();
+        scope.ServiceProvider.GetRequiredService<PastelariaContext>().Database.EnsureCreated();
+
         if (app.Environment.IsDevelopment())
             app.UseDeveloperExceptionPage();
 

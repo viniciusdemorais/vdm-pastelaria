@@ -10,11 +10,13 @@ public static class PastelEndpoint
     {
         app.MapGet("api/v1/pastel/sabores", async (IMediator mediator)
                 => await mediator.SendCommand(new ListarSaboresPasteisRequest()))
+                   .WithName("ListarSabores")
                    .WithTags("Pastel")
                    .Produces(200, typeof(string[]));
 
         app.MapPost("api/v1/pastel", async (IMediator mediator, CriarPastelRequest request)
                 => await mediator.SendCommand(request))
+                   .WithName("CriarPastel")
                    .WithTags("Pastel")
                    .Produces(200);
     }
